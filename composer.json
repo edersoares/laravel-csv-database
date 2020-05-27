@@ -1,0 +1,15 @@
+{
+    "name": "edersoares/laravel-csv-database",
+    "autoload": {
+        "psr-4": {
+            "EderSoares\\Laravel\\CsvDatabase\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EderSoares\\Laravel\\CsvDatabase\\Providers\\ServiceProvider"
+            ]
+        }
+    }
+}
