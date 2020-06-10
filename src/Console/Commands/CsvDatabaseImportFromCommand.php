@@ -37,7 +37,7 @@ class CsvDatabaseImportFromCommand extends Command
             if ($file->getExtension() === 'csv') {
                 $this->call('csv:database:import', [
                     'filename' => $file->getPathname(),
-                    'table' => $file->getBasename('.csv'),
+                    'table' => 'migration.' . $file->getBasename('.csv'),
                 ]);
             }
         });

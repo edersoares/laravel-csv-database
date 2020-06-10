@@ -41,7 +41,7 @@ class ClassName extends Migration
     public function up()
     {
         Schema::create('/* table */', function (Blueprint \$table) {
-            /* columns */
+/* columns */
         });
     }
 
@@ -79,15 +79,9 @@ PHP;
         }
 
         $header = fgetcsv($handle, 0, config('csv-database.delimiter'));
-        $columns = [
-            "\$table->id();",
-        ];
+        $columns = [];
 
         foreach ($header as $column) {
-            if ($column === 'id') {
-                $column = 'id_original';
-            }
-
             $columns[] = "            \$table->text('{$column}')->nullable();";
         }
 
@@ -115,7 +109,7 @@ PHP;
      */
     private function getFilename($table)
     {
-        return database_path('migrations/' . date('Y_m_d_His_') . Str::snake($this->getMigrationClassName($table)) . '.php');
+        return database_path('migrations/' . date('Y_m_d_000000_') . Str::snake($this->getMigrationClassName($table)) . '.php');
     }
 
     /**
@@ -132,7 +126,7 @@ PHP;
 
         $stub = $this->stub([
             'ClassName' => $this->getMigrationClassName($table),
-            '/* table */' => $table,
+            '/* table */' => 'migration.' . $table,
             '/* columns */' => $this->getMigrationColumns($filename),
         ]);
 

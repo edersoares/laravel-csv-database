@@ -36,16 +36,6 @@ class CsvDatabaseImportCommand extends Command
 
         $columns = fgetcsv($handle, 0, config('csv-database.delimiter'));
 
-        if (in_array('id', $columns)) {
-            $columns = array_flip($columns);
-
-            unset($columns['id']);
-
-            $columns = array_flip($columns);
-
-            array_unshift($columns, 'id_original');
-        }
-
         return implode(', ', $columns);
     }
 
