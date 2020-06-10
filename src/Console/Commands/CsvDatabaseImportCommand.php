@@ -12,7 +12,7 @@ class CsvDatabaseImportCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'csv:database:import {filename} {table} {--delimiter=,}';
+    protected $signature = 'csv:database:import {filename} {table} {--delimiter=,} {--output}';
 
     /**
      * The console command description.
@@ -67,6 +67,11 @@ SQL;
         $table = $this->argument('table');
 
         $sql = $this->sql($filename, $table);
+
+        if ($this->option('output')) {
+            $this->line($sql);
+            return;
+        }
 
         DB::unprepared($sql);
 

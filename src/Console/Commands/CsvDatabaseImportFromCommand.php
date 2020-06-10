@@ -13,7 +13,7 @@ class CsvDatabaseImportFromCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'csv:database:import-from {path}';
+    protected $signature = 'csv:database:import-from {path} {--output}';
 
     /**
      * The console command description.
@@ -38,6 +38,7 @@ class CsvDatabaseImportFromCommand extends Command
                 $this->call('csv:database:import', [
                     'filename' => $file->getPathname(),
                     'table' => 'migration.' . $file->getBasename('.csv'),
+                    '--output' => $this->option('output'),
                 ]);
             }
         });
